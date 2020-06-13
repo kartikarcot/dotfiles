@@ -1,0 +1,32 @@
+{
+    "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "command": "clangd",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+      "initializationOptions": {
+          "compilationDatabaseDirectory": "build",
+          "cache": {
+            "directory": ".clangd-cache"
+          }
+      }
+    },
+    "cmake": {
+      "command": "cmake-language-server",
+      "filetypes": ["cmake"],
+      "rootPatterns": [
+        "build/"
+      ],
+      "initializationOptions": {
+        "buildDirectory": "build"
+      }
+    }
+    },
+    "git.enableGutters": false,
+
+    "python.linting.enabled": true,
+    "python.formatting.provider": "yapf",
+    "diagnostic.checkCurrentLine": "true"
+}
