@@ -2,6 +2,7 @@
 
 
 ## Install commands
+> This repo must be cloned in $HOME directory
 ``` 
 apt-get update -y 
 apt-get install -y sudo 
