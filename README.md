@@ -10,8 +10,8 @@ git clone https://github.com/kartikarcot/dotfiles && cd dotfiles
 source install.sh
 ```
 
-### Old
-## Packages to install
+## Old
+### Packages to install
 ```
 sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt-get update
