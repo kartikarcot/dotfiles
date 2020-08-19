@@ -1,37 +1,119 @@
 #!/usr/bin/bash
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    print "Installing Neovim"
+    echo "Installing curl,git,add-apt repo commands"
+    sudo apt-get update -y
+    sudo apt-get install -y git
+    sudo apt-get install -y curl
+    sudo apt-get install -y software-properties-common
+    echo "Curl installed"
+    
+    sleep 2s
+
+    echo "Installing Neovim"
     sudo add-apt-repository -y ppa:neovim-ppa/stable
     sudo apt-get update -y
     sudo apt-get install -y neovim
-    print "Neovim installed"
+    echo "Neovim installed"
 
-    print "Installing vim-plug"
+    sleep 2s
+
+    echo "Installing vim-plug"
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    print "Vim-Plug installed"
+    echo "Vim-Plug installed"
 
-    print "Installing npm and nodejs"
-    sudo apt-get install -y nodejs
+    sleep 2s
+
+    echo "Installing npm and nodejs"
+    sudo apt-get insall -y nodejs
     sudo apt-get install -y npm
-    print "Npm and Nodejs installed"
+    echo "Npm and Nodejs installed"
 
-    print "Installing NerdFonts"
+    sleep 2s
+
+    echo "Installing NerdFonts"
     mkdir -p ~/.local/share/fonts
     cd ~/.local/share/fonts || exit
-    curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://githb.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
+    curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
     cd ~ || exit
-    print "Nerdfonts installed"
+    echo "Nerdfonts installed"
 
-    print "linking dotfiles"
-    source setup.sh
-    print "dotfiles linked"
+    sleep 2s
 
-    print "Installing neovim plugons"
-    nvim -s installCommands.sh
-    print "neovim plugins installed"
+    echo "Installing golang"
+    curl https://storage.googleapis.com/golang/go1.15.linux-amd64.tar.gz --output go1.15.linux-amd64.tar.gz
+    shasum -a 256 go1.15.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xvzf go1.15.linux-amd64.tar.gz
+    export  PATH=$PATH:/usr/local/go/bin
+    echo "PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
+    echo "GOPATH=\$HOME/go_projects" >> ~/.bashrc
+    echo "GOBIN=\$GOPATH/bin" >> ~/.bashrc
+    echo "golang installed"
 
-    print "Installing fzf"
+    sleep 2s
+
+    echo "Installing fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
-    print "fzf installed"
+    echo "fzf installed"
+
+    sleep 2s
+
+    echo "Installing tmux"
+    sudo apt-get install tmux
+    echo "Tmux installed"
+
+    sleep 2s
+    
+    echo "Installing tmux plugin manager"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    echo "tpm installed"
+
+    sleep 2s
+
+    if ! command -v python &> /dev/null; then
+    echo "python could not be found"
+    echo "Installing python"
+    sudo add-apt-repository ppa:deadsnakes/ppa
+    sudo apt-get update
+    sudo apt-get install python3.6
+    echo "python installed"
+    fi
+
+    sleep 2s
+
+    if ! command -v pip &> /dev/null; then
+    echo "pip could not be found"
+    echo "Installing pip"
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python3.6 get-pip.py
+    echo "pip installed"
+    fi
+
+    sleep 2s
+
+    echo "Installing powerline status"
+    pip install powerline-status
+    POWERLINE_DIR=$(pip show powerline-status | grep "Location:" | awk '{print $2}')
+    POWERLINE_PATH=$POWERLINE_DIR/powerline/bindings/tmux
+    POWERLINE_COMMAND="source $POWERLINE_PATH"
+    sed -i "2s|.*|$POWERLINE_COMMAND|" $HOME/dotfiles/.tmux.conf
+    echo "Powerline status installed"
+
+    sleep 2s
+
+    echo "linking dotfiles"
+    cd ~/dotfiles/
+    if [[ ! -d "$HOME/config/" ]]; then
+        echo "making directory .config in $HOME" 
+        mkdir $HOME/.config
+    fi
+    source setup.sh
+    echo "dotfiles linked"
+
+    sleep 2s
+
+    echo "Installing neovim plugins"
+    cd ~/dotfiles/
+    nvim -c ':PlugInstall|:UpdateRemotePlugins|qa!' ~/.config/nvim/init.vim
+    echo "neovim plugins installed"
 fi

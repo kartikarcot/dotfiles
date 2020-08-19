@@ -1,5 +1,16 @@
 # dotfiles
 
+
+## Install commands
+``` 
+apt-get update -y 
+apt-get install -y sudo 
+apt-get install -y git && cd 
+git clone https://github.com/kartikarcot/dotfiles && cd dotfiles 
+source install.sh
+```
+
+### Old
 ## Packages to install
 ```
 sudo add-apt-repository ppa:neovim-ppa/stable
@@ -25,5 +36,3 @@ sudo apt-get install neovim
  mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
  ```
- 
- 
