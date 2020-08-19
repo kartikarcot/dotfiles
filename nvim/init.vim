@@ -45,7 +45,8 @@ else
 	    Plug 'christoomey/vim-tmux-navigator'
 	    Plug 'tpope/vim-commentary'
 	    Plug 'tomasr/molokai'
-		Plug 'tomasiser/vim-code-dark'
+	    Plug 'tomasiser/vim-code-dark'
+	    Plug 'cespare/vim-toml'
     call plug#end()
     " Use <TAB> to select the popup menu:
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -161,6 +162,7 @@ else
 	    \ }
     " Fuzzy search
     nnoremap <C-p> :Files<CR>
+    nnoremap <leader>l :Lines<CR>
     let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-s': 'split',
