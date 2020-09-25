@@ -12,12 +12,8 @@ set rnu
 set foldmethod=syntax
 " ordinary neovim
 call plug#begin()
-	"Plug 'ncm2/ncm2'
 	"Plug 'SirVer/ultisnips'
-	"Plug 'honza/vim-snippets'
 	Plug 'morhetz/gruvbox'
-	Plug 'sonph/onehalf', {'rtp': 'vim/'}
-	Plug 'kaicataldo/material.vim'
 	Plug 'preservim/nerdtree'
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 	Plug 'Xuyuanp/nerdtree-git-plugin' 
@@ -26,13 +22,7 @@ call plug#begin()
 	Plug 'junegunn/fzf.vim'
 	Plug 'itchyny/lightline.vim'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'takac/vim-hardtime'
-	Plug 'tpope/vim-sleuth'
-	"Plug 'w0rp/ale'
-	"Plug 'sheerun/vim-polyglot'
 	Plug 'nathanaelkane/vim-indent-guides'
-	"Plug 'ncm2/ncm2-jedi'
-	"Plug 'ncm2/ncm2-pyclang'
 	Plug 'easymotion/vim-easymotion'
 	Plug 'christoomey/vim-tmux-navigator'
 	Plug 'tpope/vim-commentary'
