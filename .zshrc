@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/stark/.oh-my-zsh"
+export ZSH="/home/karthik/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -110,44 +110,12 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$PATH:$HOME/anaconda/bin
 export PATH=$PATH:/usr/local/opt/llvm/bin
 export PATH=$PATH:~/.local/bin
-# export PATH=$PATH:/Users/stark/anaconda2/envs/major/bin/dot
 
 alias graph='git log --all --decorate --oneline --graph'
-alias jarvis='ssh arcot@arcot.hopto.org'
-alias mrsd='cd /Users/stark/gdrive/MRSD'
-alias major='source activate major'
-alias lab='jupyter lab'
-alias workspace='bash ~/workspace.sh'
-alias drive='cd /Users/stark/gdrive/'
-alias matlabroot='/Applications/MATLAB_R2019a.app'
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/stark/anaconda2/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/stark/anaconda2/etc/profile.d/conda.sh" ]; then
-        . "/Users/stark/anaconda2/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/stark/anaconda2/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 source activate major
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-function pf() {
-	path_="/Users/stark/Projects/ParticleFilter"
-	alias dev="cd $path_/code"
-	alias bldD="cd $path_/build && cmake -DCMAKE_BUILD_TYPE=Debug -DDEBUG_MODE=ON -DBUILD_TESTS=1 $path_/code && make"
-	alias bldI="cd $path_/build && cmake -DDEBUG_MODE=OFF -DBUILD_TESTS=1 $path_/code && make"
-	alias run="cd $path_/build && ./src/main ../code/data/map/wean.dat ../code/data/log/robotdata1.log ../code/config/app_config.json"
-	PS1=$'\e[0;31m$ \e[0m'
-	alias pfargs="echo '../code/data/map/wean.dat ../code/data/log/robotdata1.log ../code/config/app_config.json'"
-}
 
 enable-fzf-tab
 
