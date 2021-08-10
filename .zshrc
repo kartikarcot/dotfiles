@@ -112,8 +112,7 @@ export PATH=$PATH:/usr/local/opt/llvm/bin
 export PATH=$PATH:~/.local/bin
 
 alias graph='git log --all --decorate --oneline --graph'
-
-source activate major
+alias st='git status'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -139,3 +138,6 @@ function cdd() {
     done
 }
 
+source ~/.bash_aliases
+export NODEJS_HOME=/usr/local/lib/node/nodejs
+export PATH=$NODEJS_HOME/bin:$PATH

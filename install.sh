@@ -4,6 +4,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     sudo apt-get update -y
     sudo apt-get install -y git
     sudo apt-get install -y curl
+	sudo apt-get install -y wget
     sudo apt-get install -y software-properties-common
     echo "Curl installed"
     
@@ -24,7 +25,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     sleep 2s
 
     echo "Installing npm and nodejs"
-    sudo apt-get insall -y nodejs
+    curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    sudo apt-get install -y nodejs
     sudo apt-get install -y npm
     echo "Npm and Nodejs installed"
 
@@ -101,14 +103,14 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     sleep 2s
 
-    echo "linking dotfiles"
-    cd ~/dotfiles/
-    if [[ ! -d "$HOME/config/" ]]; then
-        echo "making directory .config in $HOME" 
-        mkdir $HOME/.config
-    fi
-    source setup.sh
-    echo "dotfiles linked"
+    # echo "linking dotfiles"
+    # cd ~/dotfiles/
+    # if [[ ! -d "$HOME/config/" ]]; then
+    #     echo "making directory .config in $HOME" 
+    #     mkdir $HOME/.config
+    # fi
+    # source setup.sh
+    # echo "dotfiles linked"
 
     sleep 2s
 
@@ -116,4 +118,19 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     cd ~/dotfiles/
     nvim -c ':PlugInstall|:UpdateRemotePlugins|qa!' ~/.config/nvim/init.vim
     echo "neovim plugins installed"
+
+	echo "Installing zsh"
+	sudo apt-get install -y zsh
+ 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+	git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+	echo "Done installing zsh"
+
+	echo "Installing ripgrep"
+	cd ~/Downloads
+	wget https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+	sudo dpkg --install ~/Downloads/ripgrep_13.0.0_amd64.deb
+	echo "Done installing ripgrep"
 fi
