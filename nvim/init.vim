@@ -24,6 +24,7 @@ call plug#begin()
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'nathanaelkane/vim-indent-guides'
 	Plug 'easymotion/vim-easymotion'
+	Plug 'APZelos/blamer.nvim'
 	Plug 'christoomey/vim-tmux-navigator'
 	Plug 'tpope/vim-commentary'
 	Plug 'tomasr/molokai'
@@ -328,3 +329,4 @@ nnoremap <C-W>o :ZoomToggle<CR>
 " endfunction
 nnoremap <leader>sr :SourcetrailRefresh<CR>
 nnoremap <leader>sc :SourcetrailActivateToken<CR>
+cnoreabbrev bt BlamerToggle
